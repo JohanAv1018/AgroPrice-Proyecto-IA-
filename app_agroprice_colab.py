@@ -188,16 +188,20 @@ fig.update_layout(
         x=0.25
     ),
     xaxis=dict(
-        title="Fecha",
-        titlefont=dict(size=16, color="black"),
+        title=dict(
+            text="Fecha",
+            font=dict(size=16, color="black")
+        ),
         tickfont=dict(size=12, color="black"),
         showgrid=True,
         gridcolor="lightgrey",
         zerolinecolor="lightgrey"
     ),
     yaxis=dict(
-        title="Precio",
-        titlefont=dict(size=16, color="black"),
+        title=dict(
+            text="Precio",
+            font=dict(size=16, color="black")
+        ),
         tickfont=dict(size=12, color="black"),
         showgrid=True,
         gridcolor="lightgrey",
