@@ -134,8 +134,20 @@ for _ in range(pred_weeks):
     temp_df["vol_4"] = temp_df["PROMEDIO"].rolling(4).std()
     temp_df = temp_df.dropna()
 
-    X_new = scaler_X.transform(temp_df[FEATURES].values)[-VENTANA:]
-    X_pred = X_new.reshape(1, VENTANA, len(FEATURES))
+X_feat = temp_df[FEATURES].values
+
+# 🔴 Si aún no hay suficientes filas, rellenamos con la última válida
+if len(X_feat) < VENTANA:
+    last_row = X_feat[-1]
+    padding = np.repeat(last_row.reshape(1, -1), VENTANA - len(X_feat), axis=0)
+    X_feat = np.vstack([padding, X_feat])
+
+else:
+    X_feat = X_feat[-VENTANA:]
+
+# Escalar
+X_new = scaler_X.transform(X_feat)
+X_pred = X_new.reshape(1, VENTANA, len(FEATURES))
 
 # ================= GRÁFICO =================
 historical_dates = df_prod["FECHA"]
