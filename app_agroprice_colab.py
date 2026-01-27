@@ -165,7 +165,7 @@ for i in range(pred_weeks):
     y_pred = scaler_y.inverse_transform(y_pred_scaled)[0, 0]
     preds.append(y_pred)
     X_pred = np.roll(X_pred, -1, axis=1)
-    X_pred[0, -1, 0] = y_pred_scaled
+    X_pred[0, -1, 0] = y_pred_scaled[0,0]
 
 # ==========================
 # GRÁFICO
